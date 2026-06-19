@@ -22,7 +22,7 @@ npm install
 
 To install the specific dependency stack used:
 ```bash
-npm install @react-navigation/native @react-navigation/native-stack react-native-screens react-native-safe-area-context zustand axios react-native-reanimated lucide-react-native
+npm install @react-navigation/native @react-navigation/native-stack react-native-screens react-native-safe-area-context zustand axios react-native-reanimated lucide-react-native expo-linear-gradient react-native-worklets
 ```
 
 ### Running the App
