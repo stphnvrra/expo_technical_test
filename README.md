@@ -1,4 +1,4 @@
-# Expo Techincal Test
+# Expo Technical Test
 
 A React Native mobile application built with Expo and TypeScript to browse and search Pokémon.
 
