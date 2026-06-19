@@ -1,4 +1,4 @@
-# Pokedex Explorer
+# Expo Techincal Test
 
 A React Native mobile application built with Expo and TypeScript to browse and search Pokémon.
 
