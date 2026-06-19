@@ -23,11 +23,11 @@ export const convertHeight = (decimeters: number): { meters: string; imperial: s
 };
 
 export const convertWeight = (hectograms: number): { kilograms: string; pounds: string } => {
-  const kilograms = (hectograms / 10).toFixed(1);
-  const pounds = (kilograms * 2.20462).toFixed(1);
+  const kgNum = hectograms / 10;
+  const lbNum = kgNum * 2.20462;
   return {
-    kilograms: `${kilograms} kg`,
-    pounds: `${pounds} lbs`,
+    kilograms: `${kgNum.toFixed(1)} kg`,
+    pounds: `${lbNum.toFixed(1)} lbs`,
   };
 };
 

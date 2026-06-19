@@ -11,12 +11,11 @@ interface SearchBarProps {
 
 export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSearch, isLoading = false }) => {
   const [value, setValue] = useState('');
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isFocused, setIsFocused] = useState(false);
+  const timeoutRef = useRef<any | null>(null);
 
   // Debounced search trigger
   const handleChangeText = (text: string) => {
-    // Basic Input Sanitization: strip leading/trailing spaces and special characters that PokeAPI doesn't accept.
-    // PokeAPI name query accepts letters, numbers, and dashes.
     const sanitized = text.replace(/[^a-zA-Z0-9-]/g, '').toLowerCase();
     setValue(sanitized);
 
@@ -45,12 +44,21 @@ export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSearch, isL
 
   return (
     <View style={styles.container}>
-      <View style={styles.searchSection}>
-        <Search style={styles.searchIcon} color={THEME.colors.textSecondary} size={20} />
+      <View 
+        style={[
+          styles.searchSection,
+          isFocused && styles.searchSectionFocused,
+        ]}
+      >
+        <Search 
+          style={styles.searchIcon} 
+          color={isFocused ? THEME.colors.primary : THEME.colors.textSecondary} 
+          size={20} 
+        />
         <TextInput
           style={styles.input}
           placeholder={placeholder}
-          placeholderTextColor={THEME.colors.textSecondary}
+          placeholderTextColor="rgba(148, 163, 184, 0.6)"
           value={value}
           onChangeText={handleChangeText}
           underlineColorAndroid="transparent"
@@ -58,6 +66,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSearch, isL
           autoCapitalize="none"
           keyboardType="default"
           returnKeyType="search"
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
         />
         {isLoading ? (
           <ActivityIndicator size="small" color={THEME.colors.primary} style={styles.clearIcon} />
@@ -73,19 +83,28 @@ export const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onSearch, isL
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: THEME.spacing.sm,
+    marginVertical: THEME.spacing.md,
     paddingHorizontal: THEME.spacing.md,
   },
   searchSection: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: THEME.colors.cardBackground,
-    borderWidth: 1,
+    backgroundColor: 'rgba(30, 41, 59, 0.45)',
+    borderWidth: 1.5,
     borderColor: THEME.colors.border,
-    borderRadius: 16,
-    height: 52,
-    paddingHorizontal: THEME.spacing.md,
+    borderRadius: 20,
+    height: 54,
+    paddingHorizontal: THEME.spacing.lg,
     ...THEME.shadows.light,
+  },
+  searchSectionFocused: {
+    borderColor: THEME.colors.primary,
+    backgroundColor: 'rgba(30, 41, 59, 0.75)',
+    shadowColor: THEME.colors.primary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 4,
   },
   searchIcon: {
     marginRight: THEME.spacing.sm,
@@ -96,6 +115,7 @@ const styles = StyleSheet.create({
     color: THEME.colors.text,
     fontSize: THEME.typography.sizes.lg,
     paddingVertical: 0,
+    fontWeight: '600',
   },
   clearButton: {
     padding: THEME.spacing.xs,

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
+import { View, StyleSheet, StyleProp, ViewStyle, DimensionValue } from 'react-native';
 import Animated, { 
   useSharedValue, 
   useAnimatedStyle, 
@@ -13,7 +13,7 @@ interface SkeletonProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export const SkeletonRect: React.FC<SkeletonProps & { width?: number | string; height?: number | string; borderRadius?: number }> = ({ 
+export const SkeletonRect: React.FC<SkeletonProps & { width?: DimensionValue; height?: DimensionValue; borderRadius?: number }> = ({ 
   style, 
   width = '100%', 
   height = 20, 

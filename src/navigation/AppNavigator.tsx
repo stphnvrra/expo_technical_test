@@ -17,14 +17,12 @@ export const AppNavigator: React.FC = () => {
     <Stack.Navigator
       initialRouteName="Home"
       screenOptions={{
-        headerStyle: {
-          backgroundColor: THEME.colors.background,
-        },
+        headerTransparent: true,
         headerShadowVisible: false,
         headerTintColor: THEME.colors.text,
         headerTitleStyle: {
-          fontWeight: 'bold',
-          fontSize: THEME.typography.sizes.xl,
+          fontWeight: '900',
+          fontSize: THEME.typography.sizes.xxl,
         },
         contentStyle: {
           backgroundColor: THEME.colors.background,
@@ -35,7 +33,7 @@ export const AppNavigator: React.FC = () => {
         name="Home" 
         component={HomeScreen} 
         options={{
-          headerTitle: 'Pokédex Explorer',
+          headerShown: false,
         }}
       />
       <Stack.Screen 
