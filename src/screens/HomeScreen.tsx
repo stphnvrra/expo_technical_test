@@ -116,10 +116,10 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       {/* Absolute watermark Pokéball background */}
-      <Animated.View entering={FadeIn.duration(1000)} style={styles.bgPokeball}>
+      <View style={styles.bgPokeball}>
         <View style={styles.pokeballRing} />
         <View style={styles.pokeballCenterCircle} />
-      </Animated.View>
+      </View>
 
       {/* Custom Header Section */}
       <View style={styles.header}>
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     top: -50,
     width: 250,
     height: 250,
-    opacity: 0.05,
+    opacity: 0.02,
     pointerEvents: 'none',
     alignItems: 'center',
     justifyContent: 'center',
